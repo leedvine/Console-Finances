@@ -1,4 +1,8 @@
-var finances = [
+// Starting with an array of arrays 
+// which built of a string (date) 
+// and number (numbers)
+
+let finances = [
 ['Jan-2010', 867884],
 ['Feb-2010', 984655],
 ['Mar-2010', 322013],
@@ -86,3 +90,66 @@ var finances = [
 ['Jan-2017', 138230],
 ['Feb-2017', 671099]
 ];
+
+
+// Create two variables that 
+// can eventually hold the
+// strings and numbers seperately
+
+let monthsCombined = []
+let numbersCombined = []
+
+// Create a for loop to seperate string
+//  from numbers naming them date and 
+// numbers
+
+for (let i = 0; i < finances.length; i++) {
+    const [date, numbers ] = finances[i];
+
+//Console log to test seperation of date
+// and numbers - if successful will be on 
+// seperate lines
+    console.log(date);
+    console.log(numbers);
+
+
+    // Push all the dates in to the same array
+
+    monthsCombined.push(date);
+
+ // Push all the numbers in to the same array
+ 
+ numbersCombined.push(numbers);
+
+   
+}
+
+ // Test to see if all in one array
+
+ console.log(monthsCombined);
+
+  // Test to see if all numbers in one array
+  console.log(numbersCombined);
+
+  //Create a variable to count total months
+//   and console log answer
+
+let totalMonths = monthsCombined.length;
+
+console.log("Total Months: " + totalMonths);
+
+  //Create a variable that will add up all
+//    the numbers (subtracting where req'd)
+//   and show result in console
+
+const sum = numbersCombined.reduce((sumCounter, value) => {
+    return sumCounter + value;
+    }, 0);
+
+    console.log("Total: $" + sum); 
+    
+    
+    //display results in browser
+
+    
+
