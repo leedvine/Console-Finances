@@ -5,14 +5,27 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
+      body {
+        font-size: 1.2em;
+      }
+      #displayArea {
+        width: 95%;
+        max-width: 600px;
+        margin: 0 auto;
+      }
     h1 {
       border-bottom: dashed 2px black;
+      display: table;
     }
   </style>
   <title>M4 Challenge</title>
 </head>
 <body>
+  <section id="displayArea">
   <h1>Financial Analysis</h1>
+  <p>Total Months: <span id="totalMonths"></span></p>
+  <p>Total: $<span id="totalAmount"></span></p>
+</section>
   <script src="index.js"></script>
 </body>
 </html>

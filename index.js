@@ -151,5 +151,5 @@ const sum = numbersCombined.reduce((sumCounter, value) => {
     
     //display results in browser
 
-    
-
+    document.getElementById("totalMonths").innerHTML = totalMonths;
+    document.getElementById("totalAmount").innerHTML = sum;
