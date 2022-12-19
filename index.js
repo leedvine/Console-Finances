@@ -173,7 +173,7 @@ let finances = [
     
         console.log("Lee" + totalMonthsCalc);
     
-        const averageChange = totalChange / totalMonthsCalc;
+        const averageChange = totalChange / numberDiff.length;
     
         const averageChangeRounded = averageChange.toFixed(2);
     
@@ -182,12 +182,37 @@ let finances = [
     
     
     
-        //Find biggest number
+ // find the max value of monthly profits
+    const maximumProfit = Math.max(...numberDiff);
+    console.log("Max profit: $:" + maximumProfit);
+    
+    // find the index of max value of monthly profits
+    const maxAmountIndex = numberDiff.indexOf(maximumProfit);
+    
+    console.log("Max value index is: " + maxAmountIndex);
+
+    // find the month of greatest profit
+
+    let monthProfitIndex = monthsCombined.at(maxAmountIndex+1);
+
+console.log(monthProfitIndex);
     
     
+    // find the min value of monthly profits
+    const minimumProfit = Math.min(...numberDiff);
+    console.log("min profit: $:" + minimumProfit);
     
+    // find the index of min value of monthly profits
+    const minAmountIndex = numberDiff.indexOf(minimumProfit);
     
-    
+    console.log("min value index is: " + minAmountIndex);
+
+    // find the month of greatest profit
+
+    let minMonthProfitIndex = monthsCombined.at(minAmountIndex+1);
+
+console.log(minMonthProfitIndex);
+
         
         
         //display results in browser
