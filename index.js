@@ -1,7 +1,7 @@
 // Starting with an array of arrays 
-// which built of a string (date) 
-// and number (numbers)
-
+// Produce the folowing info:
+// Total months, Total amount of finances, Average Change per month
+// Greatest increase and decrease of finances in a month (show amount and month)
 let finances = [
     ['Jan-2010', 867884],
     ['Feb-2010', 984655],
@@ -89,135 +89,122 @@ let finances = [
     ['Dec-2016', 60988],
     ['Jan-2017', 138230],
     ['Feb-2017', 671099]
-    ];
-    
-    
-    // Create two variables that 
-    // can eventually hold the
-    // strings and numbers seperately
-    
-    let monthsCombined = []
-    let amountCombined = []
-    
-    // Create a for loop to seperate string
-    //  from numbers naming them date and 
-    // numbers
-    
-    for (let i = 0; i < finances.length; i++) {
-        const [date, numbers ] = finances[i];
-    
-    //Console log to test seperation of date
-    // and numbers - if successful will be on 
-    // seperate lines
-        console.log(date);
-        console.log(numbers);
-    
-    
-        // Push all the dates in to the same array
-    
-        monthsCombined.push(date);
-    
-     // Push all the numbers in to the same array
-     
-     amountCombined.push(numbers);
-    
-       
-    }
-    
-     // Test to see if all in one array
-    
-     console.log(monthsCombined);
-    
-      // Test to see if all numbers in one array
-      console.log(amountCombined);
-    
-      //Create a variable to count total months
-    //   and console log answer
-    
-    const totalMonths = monthsCombined.length;
-    
-    console.log("Total Months: " + totalMonths);
-    
-      //Create a variable to store all the numbers (subtracting where req'd)
-    //   and show result in console
-    
-    let sum = 0;
-    
-    // Running the for loop to add numbers
-    for (let i = 0; i < amountCombined.length; i++) {
-        sum += amountCombined[i];
-    }
-    
-        console.log("Total: $" + sum); 
-    
-        //Use .map to find difference in amounts month to month
-        
-        let numberDiff = amountCombined.slice(1).map((x,i)=> x-amountCombined[i]);
-    
-        console.log(numberDiff);
-    
-        //Get total change for the full period
-    
-        let totalChange = 0;
-    
-        // Running the for loop to add numbers
-        for (let i = 0; i < numberDiff.length; i++) {
-            totalChange += numberDiff[i];
-        }
-    
-        console.log(totalChange);
-    
-     //Find average change by dividing then create variable to round to two decimal places
-    
-        const totalMonthsCalc = totalMonths-1;
-    
-        console.log("Lee" + totalMonthsCalc);
-    
-        const averageChange = totalChange / numberDiff.length;
-    
-        const averageChangeRounded = averageChange.toFixed(2);
-    
-        console.log("Average Change: $ " + averageChangeRounded);
-    
-    
-    
-    
- // find the max value of monthly profits
-    const maximumProfit = Math.max(...numberDiff);
-    console.log("Max profit: $:" + maximumProfit);
-    
-    // find the index of max value of monthly profits
-    const maxAmountIndex = numberDiff.indexOf(maximumProfit);
-    
-    console.log("Max value index is: " + maxAmountIndex);
+];
 
-    // find the month of greatest profit
 
-    let monthProfitIndex = monthsCombined.at(maxAmountIndex+1);
+// Create two variables that can hold the
+// date (string) and finances amount (numbers) seperately
 
-console.log(monthProfitIndex);
-    
-    
-    // find the min value of monthly profits
-    const minimumProfit = Math.min(...numberDiff);
-    console.log("min profit: $:" + minimumProfit);
-    
-    // find the index of min value of monthly profits
-    const minAmountIndex = numberDiff.indexOf(minimumProfit);
-    
-    console.log("min value index is: " + minAmountIndex);
+let monthsCombined = []
+let amountCombined = []
 
-    // find the month of greatest profit
+// Create a for-loop to seperate string
+//  from numbers naming them date and profitLoss
 
-    let minMonthProfitIndex = monthsCombined.at(minAmountIndex+1);
+for (let i = 0; i < finances.length; i++) {
+    const [date, profitLoss] = finances[i];
 
-console.log(minMonthProfitIndex);
 
-        
-        
-        //display results in browser
-    
-        document.getElementById("totalMonths").innerHTML = totalMonths;
-        document.getElementById("totalAmount").innerHTML = sum;
-    
-    
+    // Push all the dates in to their own array
+
+    monthsCombined.push(date);
+
+    // Push all the finance numbers in to their own array
+
+    amountCombined.push(profitLoss);
+}
+
+//Create a variable to count total months
+
+const totalMonths = monthsCombined.length;
+
+
+//Create a variable to store all the profit/loss numbers,
+// subtracting where req'd
+
+let financeTotal = 0;
+
+// Running the for loop to add figures together 
+for (let i = 0; i < amountCombined.length; i++) {
+    financeTotal += amountCombined[i];
+}
+
+//Use .map to find difference in amounts month to month
+
+const numberDiff = amountCombined.slice(1).map((x, i) => x - amountCombined[i]);
+
+
+
+//Create variable to store the total change in finances for the full period
+
+let totalChange = 0;
+
+// Running the for loop to add the numbers together in relation 
+// to total monthly changes over full period
+for (let i = 0; i < numberDiff.length; i++) {
+    totalChange += numberDiff[i];
+}
+
+
+//Find average change by dividing the total change amount by total amount 
+// of months (minus 1 as their is one less change period than amount of months)
+// then create variable to round the average amount to two decimal places
+
+const totalMonthsCalc = totalMonths - 1;
+
+const averageChange = totalChange / numberDiff.length;
+
+const averageChangeRounded = averageChange.toFixed(2);
+
+
+// find the max value of monthly profits
+const maximumProfit = Math.max(...numberDiff);
+
+// find the index of max value of monthly profits
+const maxAmountIndex = numberDiff.indexOf(maximumProfit);
+
+// find the month of greatest profit +1 added to calcualtion as 
+// the result will be the month the result was achieved from the previous 
+// months results
+
+let monthProfitIndex = monthsCombined.at(maxAmountIndex + 1);
+
+// find the min value of monthly profits
+const minimumProfit = Math.min(...numberDiff);
+
+// find the index of min value of monthly profits
+const minAmountIndex = numberDiff.indexOf(minimumProfit);
+
+// find the month of greatest profit
+
+let minMonthProfitIndex = monthsCombined.at(minAmountIndex + 1);
+
+//create strings and new arrays using concat to greatest and least profitable data in display results
+
+const greatestIncreaseIntro ="Greatest Increase in Profits: ";
+
+const greatestDecreaseIntro ="Greatest Decrease in Profits: ";
+
+const mostSuccessfulResult = greatestIncreaseIntro.concat(monthProfitIndex, ' ','($',maximumProfit,')',);
+
+const leastSuccessfulResult = greatestDecreaseIntro.concat(minMonthProfitIndex, ' ','($',minimumProfit,')',);
+
+
+// Console log results
+
+console.log('Financial Analysis');
+console.log('------------------');
+console.log("Total Months: " + totalMonths);
+console.log("Total: $" + financeTotal);
+console.log("Average Change: $" + averageChangeRounded);
+console.log(mostSuccessfulResult);
+console.log(leastSuccessfulResult);
+
+
+//display results in browser
+
+document.getElementById("totalMonths").innerHTML = totalMonths;
+document.getElementById("totalAmount").innerHTML = financeTotal;
+document.getElementById("averageChange").innerHTML = averageChangeRounded;
+document.getElementById("greatestIncrease").innerHTML = mostSuccessfulResult;
+document.getElementById("greatestDecrease").innerHTML = leastSuccessfulResult;
